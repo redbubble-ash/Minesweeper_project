@@ -31,7 +31,7 @@ namespace Minesweeper_Project
 
                 do
                 {
-                    Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
+                    Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
                     isValidX = Int32.TryParse(Console.ReadLine(), out clickX);
 
 
@@ -39,7 +39,7 @@ namespace Minesweeper_Project
 
                 do
                 {
-                    Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
+                    Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
                     isValidY = Int32.TryParse(Console.ReadLine(), out clickY);
 
 
