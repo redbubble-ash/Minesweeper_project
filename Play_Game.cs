@@ -7,6 +7,7 @@ namespace Minesweeper_Project
     public class Play_Game
     {
         private static bool[,] ifClicked = new bool[10, 10];
+        private static bool ifGameOver = false;
 
         public static void ClickCells()
         {
@@ -18,38 +19,41 @@ namespace Minesweeper_Project
                 }
             }
 
-            Console.WriteLine("Please enter two number from 0 to 9");
-            int clickX = Int32.Parse(Console.ReadLine());
-            int clickY = Int32.Parse(Console.ReadLine());
-            Console.Clear();
-
-            ClearCells(clickX, clickY);
-
-            //Print the board
-            //Console.Clear();
-
-            for (int i = 0; i < 10; i++)
+            //allow the user to play multiple times before hit the bomb
+            while (!ifGameOver)
             {
-                for (int j = 0; j < 10; j++)
+                Console.WriteLine("Please enter two number from 0 to 9 follow by the enter key.");
+                int clickX = Int32.Parse(Console.ReadLine());
+                int clickY = Int32.Parse(Console.ReadLine());
+                //Console.Clear();
+
+                ClearCells(clickX, clickY);
+
+                //Print the board
+
+                for (int i = 0; i < 10; i++)
                 {
-                    if (j < 9 && ifClicked[i, j])
+                    for (int j = 0; j < 10; j++)
                     {
-                        Console.Write($" {Bomb.state[i, j]} |");
+                        if (j < 9 && ifClicked[i, j])
+                        {
+                            Console.Write($" {Bomb.state[i, j]} |");
+                        }
+                        if (j == 9 && ifClicked[i, j])
+                        {
+                            Console.Write($" {Bomb.state[i, j]} \n");
+                        }
+                        if (j < 9 && !ifClicked[i, j])
+                        {
+                            Console.Write("    |");
+                        }
+                        if (j == 9 && !ifClicked[i, j])
+                        {
+                            Console.Write("    \n");
+                        }
                     }
-                    if (j == 9 && ifClicked[i, j])
-                    {
-                        Console.Write($" {Bomb.state[i, j]} \n");
-                    }
-                    if (j < 9 && !ifClicked[i, j])
-                    {
-                        Console.Write("    |");
-                    }
-                    if (j == 9 && !ifClicked[i, j])
-                    {
-                        Console.Write("    \n");
-                    }
+                    Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
                 }
-                Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
             }
         }
 
@@ -78,6 +82,7 @@ namespace Minesweeper_Project
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("GAME OVER");
+                        ifGameOver = true;
                         Console.ResetColor();
                         Console.WriteLine();
                     }
