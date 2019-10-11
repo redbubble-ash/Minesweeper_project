@@ -24,6 +24,8 @@ namespace Minesweeper_Project
             Console.WriteLine("2 = Medium");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("3 = Hard");
+            Console.ResetColor();
+
             difficulty = Convert.ToInt32(Console.ReadLine());
 
             if (difficulty == 1)
