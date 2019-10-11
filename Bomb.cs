@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace Minesweeper_Project
 {
+
     public enum CellState { Em, M1, M2, M3, M4, M5, M6, M7, M8, M9, Bo };
 
     public class Bomb
@@ -19,11 +20,13 @@ namespace Minesweeper_Project
         }
 
         public static void PlaceBombs()
+
         {
             int bombPlacementX;
             int bombPlacementY;
             int nearBombX;
             int nearBombY;
+
             Random rnd = new Random();
 
             for (int i = 0; i < numberOfBombs; i++)
@@ -37,6 +40,7 @@ namespace Minesweeper_Project
                     //Console.WriteLine(CellState.Bomb);
 
                     for (int j = 0; j < 3; j++)
+
                     {
                         nearBombX = bombPlacementX - 1;
                         nearBombY = bombPlacementY - 1 + j;
@@ -45,9 +49,11 @@ namespace Minesweeper_Project
                             continue;
                         }
 
+
                         state[nearBombX, nearBombY] = GetNextEnum(state[nearBombX, nearBombY]);
                         state[nearBombX + 1, nearBombY] = GetNextEnum(state[nearBombX + 1, nearBombY]);
                         state[nearBombX + 2, nearBombY] = GetNextEnum(state[nearBombX + 2, nearBombY]);
+
                     }
                 }
                 else
@@ -56,6 +62,7 @@ namespace Minesweeper_Project
                 }
             }
         }
+
 
         public static CellState GetNextEnum(CellState state)
         {
