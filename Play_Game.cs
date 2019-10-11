@@ -23,22 +23,27 @@ namespace Minesweeper_Project
             //allow the user to play multiple times before hit the bomb
             do
             {
-                Console.WriteLine("Please enter two number from 0 to 9 follow by the enter key.");
                 int clickX ;
                 int clickY ;
+                bool isValidX;
+                bool isValidY;
 
-                Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
-                while (!int.TryParse(Console.ReadLine(), out clickX))
+
+                do
                 {
                     Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
-                }
+                    isValidX = Int32.TryParse(Console.ReadLine(), out clickX);
 
-                Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
-                while (!int.TryParse(Console.ReadLine(), out clickY))
+
+                } while (!isValidX || clickX < 0 || clickX > 9);
+
+                do
                 {
                     Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
-                }
+                    isValidY = Int32.TryParse(Console.ReadLine(), out clickY);
 
+
+                } while (!isValidY || clickY < 0 || clickY > 9);
                 //Console.Clear();
 
                 ClearCells(clickX, clickY);
