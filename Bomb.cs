@@ -42,17 +42,19 @@ namespace Minesweeper_Project
                     for (int j = 0; j < 3; j++)
 
                     {
-                        nearBombX = bombPlacementX - 1;
-                        nearBombY = bombPlacementY - 1 + j;
-                        if (nearBombX < 0 || nearBombX > 10 || nearBombY < 0 || nearBombY > 10)
+                        
+                        for (int k = 0; k < 3; k++)
                         {
-                            continue;
+                            nearBombX = bombPlacementX - 1 + k;
+                            nearBombY = bombPlacementY - 1 + j;
+
+                            if (nearBombX < 0 || nearBombX > 10 || nearBombY < 0 || nearBombY > 10)
+                            {
+                                continue;
+                            }
+                            state[nearBombX, nearBombY] = GetNextEnum(state[nearBombX, nearBombY]);
+
                         }
-
-
-                        state[nearBombX, nearBombY] = GetNextEnum(state[nearBombX, nearBombY]);
-                        state[nearBombX + 1, nearBombY] = GetNextEnum(state[nearBombX + 1, nearBombY]);
-                        state[nearBombX + 2, nearBombY] = GetNextEnum(state[nearBombX + 2, nearBombY]);
 
                     }
                 }
