@@ -8,6 +8,7 @@ namespace Minesweeper_Project
     {
         private static bool[,] ifClicked = new bool[10, 10];
         private static bool ifGameOver = false;
+        private static int countClicked = 0;
 
         public static void ClickCells()
         {
@@ -45,6 +46,17 @@ namespace Minesweeper_Project
                     }
                 }
 
+                //User wins if clicked cells equal to 90 
+                if (countClicked == 90)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("YOU WIN!");
+                    ifGameOver = true;
+                    Console.ResetColor();
+                    Console.WriteLine();
+                }
+
+
                 //Print the board
 
                 for (int i = 0; i < 10; i++)
@@ -61,11 +73,19 @@ namespace Minesweeper_Project
                         }
                         if (j < 9 && !ifClicked[i, j])
                         {
-                            Console.Write("    |");
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.Write("    ");
+                            Console.ResetColor();
+                            Console.Write("|");
                         }
                         if (j == 9 && !ifClicked[i, j])
                         {
-                            Console.Write("    \n");
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.Write("    ");
+                            Console.ResetColor();
+                            Console.Write("\n");
+
+
                         }
                     }
                     Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
@@ -81,6 +101,7 @@ namespace Minesweeper_Project
             {
                 //asign true to the clicked cells
                 ifClicked[x, y] = true;
+                countClicked += 1;
 
                 if (Bomb.state[x, y] == CellState.Em)
                 {
