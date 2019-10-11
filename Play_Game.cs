@@ -9,6 +9,7 @@ namespace Minesweeper_Project
         private static bool[,] ifClicked = new bool[10, 10];
         private static bool ifGameOver = false;
         private static int countClicked = 0;
+        public static bool playAgain;
 
         public static void ClickCells()
         {
@@ -118,6 +119,16 @@ namespace Minesweeper_Project
                     Console.WriteLine("  ----+----+----+----+----+----+----+----+----+----");
                 }
             } while (!ifGameOver);
+            Console.WriteLine("Type 1 to play again, else exit");
+            int tryAgain = Int32.Parse(Console.ReadLine());
+            if (tryAgain == 1)
+            {
+                playAgain = true;
+            }
+            else
+            {
+                playAgain = false;
+            }
         }
 
         public static void ClearCells(int x, int y)

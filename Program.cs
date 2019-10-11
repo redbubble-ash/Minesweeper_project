@@ -6,8 +6,11 @@ namespace Minesweeper_Project
     {
         private static void Main(string[] args)
         {
-            Bomb.MakeBombs();
-            Play_Game.ClickCells();
+            do
+            {
+                Bomb.MakeBombs();
+                Play_Game.ClickCells();
+            } while (Play_Game.playAgain);
         }
     }
 }
