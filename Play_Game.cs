@@ -21,11 +21,12 @@ namespace Minesweeper_Project
             Console.WriteLine("Please enter two number from 0 to 9");
             int clickX = Int32.Parse(Console.ReadLine());
             int clickY = Int32.Parse(Console.ReadLine());
+            Console.Clear();
 
             ClearCells(clickX, clickY);
 
             //Print the board
-            Console.Clear();
+            //Console.Clear();
 
             for (int i = 0; i < 10; i++)
             {
@@ -72,6 +73,13 @@ namespace Minesweeper_Project
                         ClearCells(x + 1, y + 1);
                         ClearCells(x, y + 1);
                         ClearCells(x, y - 1);
+                    }
+                    else if (Bomb.state[x, y] == CellState.Bo)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("GAME OVER");
+                        Console.ResetColor();
+                        Console.WriteLine();
                     }
                 }
             }
