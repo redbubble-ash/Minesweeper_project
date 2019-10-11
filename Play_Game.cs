@@ -24,13 +24,26 @@ namespace Minesweeper_Project
             do
             {
                 Console.WriteLine("Please enter two number from 0 to 9 follow by the enter key.");
-                int clickX = Int32.Parse(Console.ReadLine());
-                int clickY = Int32.Parse(Console.ReadLine());
+                int clickX ;
+                int clickY ;
+
+                Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
+                while (!int.TryParse(Console.ReadLine(), out clickX))
+                {
+                    Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
+                }
+
+                Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
+                while (!int.TryParse(Console.ReadLine(), out clickY))
+                {
+                    Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
+                }
+
                 //Console.Clear();
 
                 ClearCells(clickX, clickY);
 
-                //Game Over if the player hit the bomb
+                //Game Over if the player hit the bo
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
