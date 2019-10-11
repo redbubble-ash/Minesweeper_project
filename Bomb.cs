@@ -11,11 +11,34 @@ namespace Minesweeper_Project
     public class Bomb
     {
         public static CellState[,] state;
-        public static int numberOfBombs = 10;
+        public static int numberOfBombs;
+        public static int difficulty;
 
         public static void MakeBombs()
         {
             state = new CellState[10, 10];
+            Console.WriteLine("Please choose a difficulty level");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("1 = Easy");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("2 = Medium");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("3 = Hard");
+            difficulty = Convert.ToInt32(Console.ReadLine());
+
+            if (difficulty == 1)
+            {
+                numberOfBombs = 10;
+            }
+            if (difficulty == 2)
+            {
+                numberOfBombs = 15;
+            }
+            if (difficulty == 3)
+            { 
+            numberOfBombs = 20;
+            }
+
             PlaceBombs();
         }
 
