@@ -58,11 +58,20 @@ namespace Minesweeper_Project
 
 
                 //Print the board
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("   0    1    2    3    4    5    6    7    8    9");
+                Console.ResetColor();
 
                 for (int i = 0; i < 10; i++)
-                {
+                { 
                     for (int j = 0; j < 10; j++)
-                    {
+                    {   if(j == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{i} ");
+                            Console.ResetColor();
+
+                        }
                         if (j < 9 && ifClicked[i, j])
                         {
                             Console.Write($" {Bomb.state[i, j]} |");
@@ -88,7 +97,7 @@ namespace Minesweeper_Project
 
                         }
                     }
-                    Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
+                    Console.WriteLine("  ----+----+----+----+----+----+----+----+----+----");
                 }
             } while (!ifGameOver);
         }
