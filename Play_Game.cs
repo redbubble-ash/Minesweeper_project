@@ -29,13 +29,20 @@ namespace Minesweeper_Project
 
                 ClearCells(clickX, clickY);
 
-                if (Bomb.state[clickX, clickY] == CellState.Bo)
+                //Game Over if the player hit the bomb
+                for (int i = 0; i < 10; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("GAME OVER");
-                    ifGameOver = true;
-                    Console.ResetColor();
-                    Console.WriteLine();
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (ifClicked[i, j] && Bomb.state[i, j] == CellState.Bo)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("GAME OVER");
+                            ifGameOver = true;
+                            Console.ResetColor();
+                            Console.WriteLine();
+                        }
+                    }
                 }
 
                 //Print the board
@@ -63,7 +70,7 @@ namespace Minesweeper_Project
                     }
                     Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
                 }
-            } while ((!ifGameOver));
+            } while (!ifGameOver);
         }
 
         public static void ClearCells(int x, int y)
