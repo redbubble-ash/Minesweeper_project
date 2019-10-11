@@ -20,7 +20,7 @@ namespace Minesweeper_Project
             }
 
             //allow the user to play multiple times before hit the bomb
-            while (!ifGameOver)
+            do
             {
                 Console.WriteLine("Please enter two number from 0 to 9 follow by the enter key.");
                 int clickX = Int32.Parse(Console.ReadLine());
@@ -28,6 +28,15 @@ namespace Minesweeper_Project
                 //Console.Clear();
 
                 ClearCells(clickX, clickY);
+
+                if (Bomb.state[clickX, clickY] == CellState.Bo)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("GAME OVER");
+                    ifGameOver = true;
+                    Console.ResetColor();
+                    Console.WriteLine();
+                }
 
                 //Print the board
 
@@ -54,7 +63,7 @@ namespace Minesweeper_Project
                     }
                     Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
                 }
-            }
+            } while ((!ifGameOver));
         }
 
         public static void ClearCells(int x, int y)
@@ -65,27 +74,18 @@ namespace Minesweeper_Project
             {
                 //asign true to the clicked cells
                 ifClicked[x, y] = true;
+
+                if (Bomb.state[x, y] == CellState.Em)
                 {
-                    if (Bomb.state[x, y] == CellState.Em)
-                    {
-                        // using recursion to assign True to all the cells which surrounded the empty cells
-                        ClearCells(x - 1, y - 1);
-                        ClearCells(x - 1, y);
-                        ClearCells(x - 1, y + 1);
-                        ClearCells(x + 1, y - 1);
-                        ClearCells(x + 1, y);
-                        ClearCells(x + 1, y + 1);
-                        ClearCells(x, y + 1);
-                        ClearCells(x, y - 1);
-                    }
-                    else if (Bomb.state[x, y] == CellState.Bo)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("GAME OVER");
-                        ifGameOver = true;
-                        Console.ResetColor();
-                        Console.WriteLine();
-                    }
+                    // using recursion to assign True to all the cells which surrounded the empty cells
+                    ClearCells(x - 1, y - 1);
+                    ClearCells(x - 1, y);
+                    ClearCells(x - 1, y + 1);
+                    ClearCells(x + 1, y - 1);
+                    ClearCells(x + 1, y);
+                    ClearCells(x + 1, y + 1);
+                    ClearCells(x, y + 1);
+                    ClearCells(x, y - 1);
                 }
             }
         }
