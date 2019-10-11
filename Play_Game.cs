@@ -50,7 +50,7 @@ namespace Minesweeper_Project
                 if (countClicked == 90)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("GAME OVER");
+                    Console.Write("YOU WIN!");
                     ifGameOver = true;
                     Console.ResetColor();
                     Console.WriteLine();
@@ -73,11 +73,19 @@ namespace Minesweeper_Project
                         }
                         if (j < 9 && !ifClicked[i, j])
                         {
-                            Console.Write("    |");
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.Write("    ");
+                            Console.ResetColor();
+                            Console.Write("|");
                         }
                         if (j == 9 && !ifClicked[i, j])
                         {
-                            Console.Write("    \n");
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.Write("    ");
+                            Console.ResetColor();
+                            Console.Write("\n");
+
+
                         }
                     }
                     Console.WriteLine("----+----+----+----+----+----+----+----+----+----");
