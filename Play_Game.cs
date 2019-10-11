@@ -119,11 +119,13 @@ namespace Minesweeper_Project
                     Console.WriteLine("  ----+----+----+----+----+----+----+----+----+----");
                 }
             } while (!ifGameOver);
+
             Console.WriteLine("Type 1 to play again, else exit");
             int tryAgain = Int32.Parse(Console.ReadLine());
             if (tryAgain == 1)
             {
                 playAgain = true;
+                ifGameOver = false;
             }
             else
             {

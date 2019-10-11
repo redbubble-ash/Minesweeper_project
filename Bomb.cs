@@ -13,33 +13,42 @@ namespace Minesweeper_Project
         public static CellState[,] state;
         public static int numberOfBombs;
         public static int difficulty;
+        public static bool checkDifficulty = false;
 
         public static void MakeBombs()
         {
             state = new CellState[10, 10];
-            Console.WriteLine("Please choose a difficulty level");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("1 = Easy");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("2 = Medium");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("3 = Hard");
-            Console.ResetColor();
 
-            difficulty = Convert.ToInt32(Console.ReadLine());
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Please choose a difficulty level");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("1 = Easy");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("2 = Medium");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("3 = Hard");
+                Console.ResetColor();
+                difficulty = Convert.ToInt32(Console.ReadLine());
 
-            if (difficulty == 1)
-            {
-                numberOfBombs = 10;
-            }
-            if (difficulty == 2)
-            {
-                numberOfBombs = 15;
-            }
-            if (difficulty == 3)
-            { 
-            numberOfBombs = 20;
-            }
+                if (difficulty == 1)
+                {
+                    numberOfBombs = 10;
+                    checkDifficulty = true;
+                }
+                if (difficulty == 2)
+                {
+                    numberOfBombs = 15;
+                    checkDifficulty = true;
+                }
+                if (difficulty == 3)
+                {
+                    numberOfBombs = 20;
+                    checkDifficulty = true;
+                }
+            } while (checkDifficulty == false);
+
 
             PlaceBombs();
         }
