@@ -24,26 +24,21 @@ namespace Minesweeper_Project
             //allow the user to play multiple times before hit the bomb
             do
             {
-                int clickX ;
-                int clickY ;
+                int clickX;
+                int clickY;
                 bool isValidX;
                 bool isValidY;
-
 
                 do
                 {
                     Console.WriteLine("Please enter a number from 0 to 9 for row selection.");
                     isValidX = Int32.TryParse(Console.ReadLine(), out clickX);
-
-
                 } while (!isValidX || clickX < 0 || clickX > 9);
 
                 do
                 {
                     Console.WriteLine("Please enter a number from 0 to 9 for column selection.");
                     isValidY = Int32.TryParse(Console.ReadLine(), out clickY);
-
-
                 } while (!isValidY || clickY < 0 || clickY > 9);
                 //Console.Clear();
 
@@ -65,7 +60,7 @@ namespace Minesweeper_Project
                     }
                 }
 
-                //User wins if clicked cells equal to 90 
+                //User wins if clicked cells equal to 90
                 if (countClicked == 90)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -75,49 +70,7 @@ namespace Minesweeper_Project
                     Console.WriteLine();
                 }
 
-
-                //Print the board
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("   0    1    2    3    4    5    6    7    8    9");
-                Console.ResetColor();
-
-                for (int i = 0; i < 10; i++)
-                { 
-                    for (int j = 0; j < 10; j++)
-                    {   if(j == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write($"{i} ");
-                            Console.ResetColor();
-
-                        }
-                        if (j < 9 && ifClicked[i, j])
-                        {
-                            Console.Write($" {Bomb.state[i, j]} |");
-                        }
-                        if (j == 9 && ifClicked[i, j])
-                        {
-                            Console.Write($" {Bomb.state[i, j]} \n");
-                        }
-                        if (j < 9 && !ifClicked[i, j])
-                        {
-                            Console.BackgroundColor = ConsoleColor.Gray;
-                            Console.Write("    ");
-                            Console.ResetColor();
-                            Console.Write("|");
-                        }
-                        if (j == 9 && !ifClicked[i, j])
-                        {
-                            Console.BackgroundColor = ConsoleColor.Gray;
-                            Console.Write("    ");
-                            Console.ResetColor();
-                            Console.Write("\n");
-
-
-                        }
-                    }
-                    Console.WriteLine("  ----+----+----+----+----+----+----+----+----+----");
-                }
+                PrintCells();
             } while (!ifGameOver);
 
             Console.WriteLine("Type 1 to play again, else exit");
@@ -155,6 +108,50 @@ namespace Minesweeper_Project
                     ClearCells(x, y + 1);
                     ClearCells(x, y - 1);
                 }
+            }
+        }
+
+        public static void PrintCells()
+        {
+            //Print the board
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("   0    1    2    3    4    5    6    7    8    9");
+            Console.ResetColor();
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (j == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write($"{i} ");
+                        Console.ResetColor();
+                    }
+                    if (j < 9 && ifClicked[i, j])
+                    {
+                        Console.Write($" {Bomb.state[i, j]} |");
+                    }
+                    if (j == 9 && ifClicked[i, j])
+                    {
+                        Console.Write($" {Bomb.state[i, j]} \n");
+                    }
+                    if (j < 9 && !ifClicked[i, j])
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.Write("    ");
+                        Console.ResetColor();
+                        Console.Write("|");
+                    }
+                    if (j == 9 && !ifClicked[i, j])
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.Write("    ");
+                        Console.ResetColor();
+                        Console.Write("\n");
+                    }
+                }
+                Console.WriteLine("  ----+----+----+----+----+----+----+----+----+----");
             }
         }
     }
