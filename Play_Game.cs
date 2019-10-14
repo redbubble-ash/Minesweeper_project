@@ -21,6 +21,8 @@ namespace Minesweeper_Project
                 }
             }
 
+            PrintCells();
+
             //allow the user to play multiple times before hit the bomb
             do
             {
@@ -43,6 +45,7 @@ namespace Minesweeper_Project
                 //Console.Clear();
 
                 ClearCells(clickX, clickY);
+                PrintCells();
 
                 //Game Over if the player hit the bo
                 for (int i = 0; i < 10; i++)
@@ -69,8 +72,6 @@ namespace Minesweeper_Project
                     Console.ResetColor();
                     Console.WriteLine();
                 }
-
-                PrintCells();
             } while (!ifGameOver);
 
             Console.WriteLine("Type 1 to play again, else exit");
@@ -114,6 +115,8 @@ namespace Minesweeper_Project
         public static void PrintCells()
         {
             //Print the board
+            Console.Clear();
+
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("   0    1    2    3    4    5    6    7    8    9");
             Console.ResetColor();

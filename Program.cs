@@ -9,7 +9,6 @@ namespace Minesweeper_Project
             do
             {
                 Bomb.MakeBombs();
-                Play_Game.PrintCells();
                 Play_Game.ClickCells();
             } while (Play_Game.playAgain);
         }
